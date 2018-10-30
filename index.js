@@ -7,14 +7,16 @@ const keys = require('./config/keys');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 require('./services/passport');
-
 
 mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI,(err) =>{
   console.log("connect ss");
 });
-
+app.set("view engine","ejs");
+app.set("vỉews","./views");
+app.use(express.static(__dirname + '/public'));
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -26,6 +28,8 @@ app.use(passport.session());
 
 require('./routes/authRoutes')(app);
 require('./routes/productRoutes')(app);
+require('./routes/billRoutes')(app);
+require('./routes/userRoutes')(app);
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", '*');
