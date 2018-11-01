@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const ProductModel = require('./Product');
 const billSchema = new Schema({
-  productId : {type: Schema.Types.ObjectId,ref:'ProductModel',required:true},
+  productId : {type: Schema.Types.ObjectId,ref:'Product',required:true},
   createByUser : {type: Schema.Types.ObjectId,ref:'User',required:true},
   type : {type:String,required:true},
   unitPrice : {type:Number},

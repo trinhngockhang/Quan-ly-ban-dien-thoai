@@ -30,6 +30,7 @@ require('./routes/authRoutes')(app);
 require('./routes/productRoutes')(app);
 require('./routes/billRoutes')(app);
 require('./routes/userRoutes')(app);
+require('./routes/renderRoute')(app);
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", '*');

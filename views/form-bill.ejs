@@ -148,11 +148,12 @@
               </div>
             </div>
             <div class="clearfix"></div>
+
             <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="col-md-12 col-xs-24">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Thêm sản phẩm<small></small></h2>
+                    <h2>Tạo đơn hàng<small>Nhập/bán sản phẩm</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -172,46 +173,57 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form id="form-product" data-parsley-validate class="form-horizontal form-label-left" method = "POST" action ="/api/createProduct">
-
+                    <form class="form-horizontal form-label-left" id ="form-bill" action="/api/createBill" method="post">
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Tên điện thoại<span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" name = "name">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Hãng điện thoại</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control" name = "type">
-                            <option value = "Iphone">Iphone</option>
-                            <option value = "Xiaomi" >XiaoMi</option>
-                            <option value = "Oppo">Oppo</option>
-                            <option value = "Samsung" >Samsung</option>
-                            <option value = "Other">Other</option>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Loại sản phẩm</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select class="select2_group form-control" name="productId">
+                            <optgroup label="Iphone" class="opt-iphone">
+                            </optgroup>
+                            <optgroup label="Xiaomi" class="opt-xiaomi">
+                            </optgroup>
+                            <optgroup label="Oppo" class="opt-oppo">
+                            </optgroup>
+                            <optgroup label="Samsung" class="opt-samsung">
+                            </optgroup>
+                            <optgroup label="Other" class="opt-other">
+                            </optgroup>
                           </select>
                         </div>
                       </div>
+
+
                       <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Giá bán</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="middle-name" name = "price" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Số lượng sản phẩm</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" name ="numberOfProduct" placeholder="Type here">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Mô tả<span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="birthday" name = "description" class="date-picker form-control col-md-7 col-xs-12" type="text">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Đơn giá nhập</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" name ="unitPrice" placeholder="Type here">
                         </div>
                       </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Loại đơn hàng </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <select class="form-control" name = "type">
+                            <option value = "Out">Bán</option>
+                            <option value = "In" >Nhập</option>
+                          </select>
+                        </div>
+                      </div>
+
+
+
+
                       <div class="ln_solid"></div>
                       <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button class="btn btn-primary" type="button">Cancel</button>
-						              <button class="btn btn-primary" type="reset">Reset</button>
-                          <button type="submit" class="btn btn-success">Submit</button>
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                          <button type="button" class="btn btn-primary">Cancel</button>
+                          <button type="reset" class="btn btn-primary">Reset</button>
+                          <button id="submit-bill" class="btn btn-success">Submit</button>
                         </div>
                       </div>
 
@@ -219,7 +231,8 @@
                   </div>
                 </div>
               </div>
-            </div>
+
+
 
           </div>
         </div>

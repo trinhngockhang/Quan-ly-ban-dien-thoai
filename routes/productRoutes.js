@@ -14,6 +14,13 @@ module.exports = app => {
     res.send("done");
   })
 
+  app.get("/api/topPhone",async (req,res) => {
+    await productController.topPhone(req,res);
+  })
+
+  app.get("/api/topType",async (req,res) => {
+    await productController.topType(req,res);
+  })
   app.get("/api/countProduct",async (req,res) => {
       var count = await Product.countDocuments();
       res.send("" + count);
@@ -21,6 +28,10 @@ module.exports = app => {
 
   app.post("/api/productType",async (req,res) => {
       await productController.findProductByType(req,res);
+  })
+
+  app.post("/api/updateProduct",async (req,res) => {
+      await productController.updateProduct(req,res);
   })
 
   app.get("/api/dataTenDays",async (req,res) => {

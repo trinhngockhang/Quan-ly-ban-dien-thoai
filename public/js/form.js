@@ -32,6 +32,14 @@ $( document ).ready(function() {
       })
     })
 
+    $.post("/api/productType",{type:"Other"}).done(function(data){
+      data.forEach((doc,index) => {
+        console.log(doc.name);
+        $(".opt-other").append("<option class='option-other' id = "+ 'other' + index  + "> </option>");
+        $("#other" + index).html(doc.name);
+        $("#other" + index).val(doc._id);
+      })
+    })
     // Submit
 
       $( "#form-bill" ).submit(function( event ) {
@@ -48,6 +56,19 @@ $( document ).ready(function() {
       });
 
       $( "#form-product" ).submit(function( event ) {
+        $.ajax({ // create an AJAX call...
+          data: $(this).serialize(), // get the form data
+          type: $(this).attr('method'), // GET or POST
+          url: $(this).attr('action'), // the file to call
+          success: function(response) { // on success..
+              alert(response);
+              console.log(response);
+          }
+      });
+        event.preventDefault();
+      });
+
+      $( "#form-update-product" ).submit(function( event ) {
         $.ajax({ // create an AJAX call...
           data: $(this).serialize(), // get the form data
           type: $(this).attr('method'), // GET or POST

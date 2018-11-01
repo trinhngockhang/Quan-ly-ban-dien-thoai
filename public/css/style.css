@@ -3,3 +3,12 @@
 	width: 100px;
 	display: inline;
 }
+
+.w_right{
+	margin-top: -6px;
+}
+
+.panel_toolbox>li {
+    float: right;
+    cursor: pointer;
+}

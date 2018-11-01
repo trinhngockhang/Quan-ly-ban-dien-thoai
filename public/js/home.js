@@ -8,15 +8,8 @@ $( document ).ready(function() {
       timeArr[i] = newDay.getDate() + "/" +(1+ newDay.getMonth()) + "/" +
       newDay.getFullYear();
     }
-    console.log(timeArr);
-
-
     //set curent
-    $.get( "/api/current_user", function( data ) {
-      $( ".name-user" ).html( data.username );
-      $( ".Welcome-name" ).html( data.username );
-      $("#avatar-user").attr("src",data.avatarLink);
-    });
+
     //set number of product
     $.get("/api/billCountProduct",function(data){
       $("#count-out-month").html(data.monthOut);
@@ -88,6 +81,51 @@ $( document ).ready(function() {
   });
 })
 
-    //charjs
+  //top phone
+  $.get("/api/topPhone",function(data){
+    console.log(data);
+    var best = data[0].sold;
+    data.forEach((doc,index)=>{
+      $("#phone"+(index+1)).html(doc.name);
+      $("#number-phone" +(index+1)).html(doc.sold);
+      if(index>0){
+         let per = (doc.sold/best * 100) + "%";
+         $("#bar-phone" + (index+1)).css("width",per);
+      }
+    })
+
+  })
+
+  $.get("/api/topType",function(dataType){
+    console.log(dataType);
+    var sum = dataType[0] + dataType[1] + dataType[2] + dataType[3] + dataType[4];
+    console.log("sum",sum);
+    $("#per1").html(Math.round(dataType[0]/sum * 100) + "%");
+    $("#per2").html(Math.round(dataType[1]/sum * 100) + "%");
+    $("#per3").html(Math.round(dataType[2]/sum * 100)+ "%");
+    $("#per4").html(Math.round(dataType[3]/sum * 100) + "%");
+    $("#per5").html(Math.round(dataType[4]/sum * 100) + "%");
+    var ctx = document.getElementById("canvasDoughnut1");
+    var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ["Iphone","SamSung","Oppo","XiaoMi","Other"],
+        datasets: [{
+            label: 'Hãng điện thoại yêu thích',
+            data: dataType,
+            backgroundColor: [
+                '#3598dc',
+                '#18bb9b',
+                '#9b58b6',
+                '#9cc2cb',
+                '#e84b3c'
+            ]
+        }]
+    },
+    options: {
+
+    }
+});
+})
 
 });

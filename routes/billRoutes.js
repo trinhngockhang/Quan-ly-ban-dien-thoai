@@ -9,6 +9,11 @@ module.exports = app => {
       await productController.createBill(req,res);
   })
 
+
+  app.get("/api/getAllBill",async (req,res) => {
+      await productController.getAllBill(req,res);
+  })
+
   //tong san pham ban ra thang vua roi
   app.get("/api/billCountProduct",async (req,res) => {
      var data = {};

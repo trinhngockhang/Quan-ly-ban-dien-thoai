@@ -9,13 +9,7 @@ module.exports = app => {
     res.send("ban da login");
   })
 
-  app.get("/",requireLogin,(req,res) => {
-    res.render('home');
-  })
 
-  app.get("/form",requireLogin,(req,res) => {
-    res.render('form');
-  })
 
   app.get("/login",(req,res) =>{
     console.log("vao");
@@ -29,9 +23,9 @@ module.exports = app => {
 
   app.post('/login',
     passport.authenticate('local', { failureRedirect: '/',
-                                     successRedirect:'/admin'}),
+                                     successRedirect:'/'}),
     function(req, res) {
-      res.redirect('/admin');
+      res.redirect('/');
     });
 
 
