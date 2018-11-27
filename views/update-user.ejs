@@ -68,7 +68,9 @@
                   <li><a><i class="fa fa-edit"></i> Tạo đơn <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/form">Thêm sản phẩm</a></li>
-                      <li><a href="/form-bill">Tạo đơn hàng</a></li>
+                      <li><a href="/form-bill">Đơn hàng nhập</a></li>
+                      <li><a href="/form-bill-out">Đơn hàng xuất</a></li>
+                      <li><a href="/form-producer">Thêm nhà cung cấp</a></li>
                       <li><a href="/form-user">Tạo admin(cho quản lý)</a></li>
                       <li><a href="/update-user">Sửa thông tin</a></li>
                       <li><a href="/update-product">Cập nhật sản phẩm</a></li>
@@ -77,15 +79,16 @@
                   <li><a><i class="fa fa-table"></i> Bảng <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/product-table">Sản phẩm</a></li>
-                      <li><a href="/bill-table">Đơn hàng</a></li>
+                      <li><a href="/bill-table">Đơn hàng nhập</a></li>
+                      <li><a href="/bill-table-out">Đơn hàng xuất</a></li>
                       <li><a href="/user-table">Nhân viên</a></li>
-
+                      <li><a href="/client-table">Khách hàng</a></li>
+                      <li><a href="/producer-table">Nhà cung cấp</a></li>
                     </ul>
                   </li>
                 </ul>
               </div>
             </div>
-            <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
@@ -168,21 +171,35 @@
                     <form id="form-update-user" data-parsley-validate class="form-horizontal form-label-left" method = "POST" action ="/api/updateUser">
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Username<span class="required"></span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Tên đăng nhập<span class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="user-name" class="form-control col-md-7 col-xs-12" name = "username" >
                         </div>
                       </div>
                       <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Họ tên</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input  name = "name" class="form-control col-md-7 col-xs-12" type="text" >
+                        </div>
+                      </div>
+                      <div class="form-group">
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="email" name = "email" class="form-control col-md-7 col-xs-12" type="text" name="email">
+                          <input  name = "email" class="form-control col-md-7 col-xs-12" type="text" >
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Điện thoại</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input name = "phone" class="form-control col-md-7 col-xs-12" type="Number" >
                         </div>
                       </div>
 
 
+
                       <div class="ln_solid"></div>
+                      <h5 class = "mess" >✓ Nhập thành công</h5>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                           <button class="btn btn-primary" type="button">Cancel</button>

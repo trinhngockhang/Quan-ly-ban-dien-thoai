@@ -11,5 +11,5 @@ const productSchema = new Schema({
   sold: {type:Number,default:0}
 });
 
-
+mongoose.model('Product', productSchema);
 module.exports = mongoose.model('Product', productSchema);

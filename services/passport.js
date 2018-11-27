@@ -7,6 +7,7 @@ const User = require('../models/User');
 const userController = require('../Controller/UserController');
 const bcrypt = require('bcrypt');
 passport.serializeUser((user, done) => {
+  console.log('user rrrr ',user.id11);
   done(null, user.id);
 });
 

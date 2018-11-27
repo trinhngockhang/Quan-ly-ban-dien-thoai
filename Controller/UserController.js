@@ -4,7 +4,7 @@ var createUser = async function(req,res){
   try {
     data = req.body;
     await  UserModel.create(data);
-    res.send("Tạo user thành công");
+    res.send("Success");
   }catch(err){
     res.send("Đã xảy ra lỗi");
   }
@@ -22,7 +22,7 @@ async function findUserByName(data){
 
 async function allUser(req,res){
   try{
-    var result = await UserModel.find({},["username","email","type"]);
+    var result = await UserModel.find({},["username","email","phone","gender","type"]);
     res.send(result);
   }catch(err){
     res.send(err);
@@ -39,16 +39,23 @@ async function countUser(){
 }
 
 async function updateUser(req,res){
+  if(!req.body){
+    res.send('err');
+  }else{
   var objForUpdate = {};
   if(req.body.username) objForUpdate.username = req.body.username;
   if(req.body.email) objForUpdate.email = req.body.email;
+  if(req.body.name) objForUpdate.name = req.body.name;
+  if(req.body.phone) objForUpdate.phone = req.body.phone;
   console.log(objForUpdate);
   try{
     await UserModel.findOneAndUpdate({_id:req.user._id},objForUpdate);
   }catch(err){
-    res.send("Đã xảy ra lỗi");
+    console.log(err);
+    res.send("err");
   }
-  res.send("Cập nhật thành công,không tin thì F5");
+  res.send("Success");
+  }
 }
 
 module.exports = {

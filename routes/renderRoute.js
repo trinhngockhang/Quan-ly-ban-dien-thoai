@@ -5,6 +5,7 @@ const requireBoss = require('../middlewares/requireBoss');
 
 module.exports = app => {
   app.get("/",requireLogin,(req,res) => {
+    console.log(req.session);
     res.render('home');
   })
 
@@ -18,6 +19,10 @@ module.exports = app => {
 
   app.get("/form-bill",requireLogin,(req,res) => {
     res.render('form-bill');
+  })
+
+  app.get("/form-bill-out",requireLogin,(req,res) => {
+    res.render('form-out');
   })
 
   app.get("/update-user",requireLogin,(req,res) => {
@@ -42,5 +47,17 @@ module.exports = app => {
 
   app.get("/product-table",requireLogin,(req,res) => {
     res.render('product-table');
+  })
+
+  app.get("/bill-table-out",requireLogin,(req,res) => {
+    res.render('bill-table-out');
+  })
+
+  app.get("/client-table",requireLogin,(req,res) => {
+    res.render('client-table');
+  })
+
+  app.get("/producer-table",requireLogin,(req,res) => {
+    res.render('producer-table');
   })
 };

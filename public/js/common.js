@@ -1,7 +1,7 @@
 $( document ).ready(function() {
   $.get( "/api/current_user", function( data ) {
-    $( ".name-user" ).html( data.username );
-    $( ".Welcome-name" ).html( data.username );
+    $( ".name-user" ).html( data.name );
+    $( ".Welcome-name" ).html( data.name );
     $("#avatar-user").attr("src",data.avatarLink);
   });
 })

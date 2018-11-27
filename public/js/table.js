@@ -1,13 +1,13 @@
 $( document ).ready(function() {
-    $.get("/api/getAllBill",function(bill){
-      console.log(bill);
+    $.get("/api/getAllBillIn",function(bill){
       $('#datatable-bill').DataTable( {
         data: bill,
         columns: [
             { title: "Tên sản phẩm" },
-            { title: "Nhân viên" },
-            { title: "Loại đơn hàng" },
+            { title: "Hãng"},
+            { title: "Người nhập" },
             { title: "Số lượng" },
+            { title: "Nhà cung cấp" },
             { title: "Đơn giá" },
             { title: "Tổng tiền" },
             { title: "Thời gian"}

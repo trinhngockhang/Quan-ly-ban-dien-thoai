@@ -1,7 +1,7 @@
 const passport = require('passport');
 const productController = require('../Controller/productController');
 const Product = require('../models/Product');
-
+const requireLogin = require('../middlewares/requireLogin');
 module.exports = app => {
   app.get('/api/allProduct',async (req,res) => {
     const data = await productController.getAllProduct();
@@ -11,7 +11,6 @@ module.exports = app => {
 
   app.post('/api/createProduct',async (req,res) => {
     await productController.createProduct(req,res);
-    res.send("done");
   })
 
   app.get("/api/topPhone",async (req,res) => {
@@ -34,7 +33,9 @@ module.exports = app => {
       await productController.updateProduct(req,res);
   })
 
-  app.get("/api/dataTenDays",async (req,res) => {
-      await productController.getDataTenDays(req,res);
+  app.get("/api/deleteProductByName",requireLogin,async (req,res) => {
+      var result = await Product.deleteOne({name:req.query.name});
+      res.send("done");
   })
+
 };

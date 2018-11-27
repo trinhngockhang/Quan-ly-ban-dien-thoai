@@ -1,14 +1,40 @@
-<!DOCTYPE html>
-<html>
-  <head>
+
+<!doctype html>
+<html lang="en">
+
+<head>
     <meta charset="utf-8">
-    <title>Login</title>
-  </head>
-  <body>
-    <form class="" action="/login" method="post">
-      <input type="text" name="username" placeholder="username" autocomplete="off">
-      <input type="password" name="password" placeholder="password" autocomplete="off">
-      <input type="submit" name="" value="Login">
-    </form>
-  </body>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <title>Database project</title>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="row">
+            <form class="col-md-12 col-lg-10 col-xl-8 mx-auto" action="/login" method="post">
+                <div class="form-row">
+                    <div class="form-group col-sm-6" >
+                        <label for="">Tên tài khoản <span class="text-danger">*</span></label>
+                        <input type="text" id="login-user" class="form-control" name="username" id="" placeholder="ID">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="">Mật khẩu <span class="text-danger">*</span></label>
+                        <input type="password" id ="login-pass" class="form-control" name="password" id="" placeholder="Password">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+
 </html>

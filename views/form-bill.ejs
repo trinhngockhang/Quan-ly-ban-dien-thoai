@@ -68,7 +68,9 @@
                   <li><a><i class="fa fa-edit"></i> Tạo đơn <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/form">Thêm sản phẩm</a></li>
-                      <li><a href="/form-bill">Tạo đơn hàng</a></li>
+                      <li><a href="/form-bill">Đơn hàng nhập</a></li>
+                      <li><a href="/form-bill-out">Đơn hàng xuất</a></li>
+                      <li><a href="/form-producer">Thêm nhà cung cấp</a></li>
                       <li><a href="/form-user">Tạo admin(cho quản lý)</a></li>
                       <li><a href="/update-user">Sửa thông tin</a></li>
                       <li><a href="/update-product">Cập nhật sản phẩm</a></li>
@@ -77,8 +79,11 @@
                   <li><a><i class="fa fa-table"></i> Bảng <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/product-table">Sản phẩm</a></li>
-                      <li><a href="/bill-table">Đơn hàng</a></li>
+                      <li><a href="/bill-table">Đơn hàng nhập</a></li>
+                      <li><a href="/bill-table-out">Đơn hàng xuất</a></li>
                       <li><a href="/user-table">Nhân viên</a></li>
+                      <li><a href="/client-table">Khách hàng</a></li>
+                      <li><a href="/producer-table">Nhà cung cấp</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -133,7 +138,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Form Elements</h3>
+                <h3>Nhập/xuất hoá đơn</h3>
               </div>
 
               <div class="title_right">
@@ -153,18 +158,13 @@
               <div class="col-md-12 col-xs-24">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Tạo đơn hàng<small>Nhập/bán sản phẩm</small></h2>
+                    <h2>Nhập hàng</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
+
                       </li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
                       </li>
@@ -173,10 +173,10 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form class="form-horizontal form-label-left" id ="form-bill" action="/api/createBill" method="post">
+                    <form class="form-horizontal form-label-left" data-parsley-validate id ="form-bill-in" action="/api/createBillIn" method="post">
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Loại sản phẩm</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
                           <select class="select2_group form-control" name="productId">
                             <optgroup label="Iphone" class="opt-iphone">
                             </optgroup>
@@ -195,35 +195,34 @@
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Số lượng sản phẩm</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name ="numberOfProduct" placeholder="Type here">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="Number" class="form-control" name ="numberOfProduct" placeholder="Type here" required ="">
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Đơn giá nhập</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" name ="unitPrice" placeholder="Type here">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="Number" class="form-control" name ="unitPrice" placeholder="Type here" required = "Number">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Loại đơn hàng </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select class="form-control" name = "type">
-                            <option value = "Out">Bán</option>
-                            <option value = "In" >Nhập</option>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Nhà cung cấp</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12 ">
+                          <select id="producer-select" class="producer-select form-control" name="producerId">
+
                           </select>
                         </div>
                       </div>
 
 
 
-
                       <div class="ln_solid"></div>
+                      <h5 class = "mess" id="bill-in" >✓ Nhập thành công</h5>
                       <div class="form-group">
                         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                           <button type="button" class="btn btn-primary">Cancel</button>
                           <button type="reset" class="btn btn-primary">Reset</button>
-                          <button id="submit-bill" class="btn btn-success">Submit</button>
+                          <button id="submit-bill-in" class="btn btn-success">Submit</button>
                         </div>
                       </div>
 
@@ -232,7 +231,7 @@
                 </div>
               </div>
 
-
+              <div class="clearfix"></div>
 
           </div>
         </div>
