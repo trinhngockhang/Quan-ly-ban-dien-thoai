@@ -5,10 +5,12 @@ const requireBoss = require('../middlewares/requireBoss');
 const producerController = require('../Controller/ProducerController');
 const clientController = require('../Controller/ClientController');
 const User = require('../models/User');
-
-
+const excel = require('node-excel-export');
+const styles = require('../config/styleExcel');
+var allClients = [];
+var allUsers = [];
+var allProducer = [];
 module.exports = app => {
-
   app.post("/api/createUser",(req,res) => {
       userController.createUser(req,res);
   })
@@ -27,7 +29,9 @@ module.exports = app => {
   });
 
   app.get("/api/allUser",async (req,res) => {
-      await userController.allUser(req,res);
+    var data =  await userController.allUser();
+    allUsers = data;
+    res.send(data);
   })
 
   app.get("/api/deleteUserByName",requireLogin,async (req,res) => {
@@ -51,13 +55,146 @@ module.exports = app => {
   })
 
   app.get("/api/allClient",async (req,res) => {
-    await clientController.getAllClient(req,res);
+    var data = await clientController.getAllClient();
+    allClients = data;
+    res.send(data);
   })
 
   app.get("/api/allProducer",async (req,res) => {
     const doc = await producerController.getAllProducer();
+    allProducer = doc;
     res.send(doc);
   })
 
+  app.get("/api/excel/client", (req,res) => {
+    const heading = [
+      [{value:'Danh sách khách hàng',style:styles.headerNormal}]
+    ];
+    const specification = {
+      name: {
+        displayName: 'Tên',
+        headerStyle : styles.headerNormal,
+        width : 320
+      },
+      email: {
+        displayName: "Email",
+        headerStyle : styles.headerNormal,
+        width : 200
+      },
+      phone: {
+        displayName: "SĐT",
+        headerStyle : styles.headerNormal,
+        width : 250
+      }
+    }
+    const merges = [
+      { start: { row: 1, column: 1}, end: { row: 1, column: 10 } }
+    ]
+    const report = excel.buildExport(
+      [
+        {
+        name:"Client",
+        heading:heading,
+        merges:merges,
+        specification:specification,
+        data:allClients
+       }
+      ]
+    )
+    res.attachment('Client.xlsx');
+    return res.send(report);
+  })
 
+  app.get("/api/excel/users",(req,res) => {
+    const heading = [
+      [{value:'Danh sách nhân viên',style:styles.headerNormal}]
+    ];
+    const specification = {
+      username: {
+        displayName: 'Tên',
+        headerStyle : styles.headerNormal,
+        width : 320
+      },
+      email: {
+        displayName: "Email",
+        headerStyle : styles.headerNormal,
+        width : 200
+      },
+      gender: {
+        displayName: "Giới tính",
+        headerStyle : styles.headerNormal,
+        width : 250
+      },
+      phone:{
+        displayName:"SĐT",
+        headerStyle : styles.headerNormal,
+        width: 300
+      },
+      type:{
+        displayName:"Chức vụ",
+        headerStyle : styles.headerNormal,
+        width: 300
+      }
+    }
+    const merges = [
+      { start: { row: 1, column: 1}, end: { row: 1, column: 10 } }
+    ]
+    const report = excel.buildExport(
+      [
+        {
+        name:"Users",
+        heading:heading,
+        merges:merges,
+        specification:specification,
+        data:allUsers
+       }
+      ]
+    )
+    res.attachment('Users.xlsx');
+    return res.send(report);
+  })
+
+  app.get("/api/excel/producer",(req,res) => {
+    const heading = [
+      [{value:'Danh sách nhà cung cấp',style:styles.headerNormal}]
+    ];
+    const specification = {
+      name: {
+        displayName: 'Tên',
+        headerStyle : styles.headerNormal,
+        width : 320
+      },
+      email: {
+        displayName: "Email",
+        headerStyle : styles.headerNormal,
+        width : 200
+      },
+      phone:{
+        displayName:"SĐT",
+        headerStyle : styles.headerNormal,
+        width: 300
+      },
+      address:{
+        displayName:"Địa chỉ",
+        headerStyle : styles.headerNormal,
+        width: 300
+      }
+    }
+    const merges = [
+      { start: { row: 1, column: 1}, end: { row: 1, column: 10 } }
+    ]
+    const report = excel.buildExport(
+      [
+        {
+        name:"Producer",
+        heading:heading,
+        merges:merges,
+        specification:specification,
+        data:allProducer
+       }
+      ]
+    )
+    res.attachment('Producer.xlsx');
+    return res.send(report);
+  })
 };

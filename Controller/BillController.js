@@ -3,39 +3,47 @@ const Bill = require('../models/Bill');
 const async = require('async');
 const BillIn = require('../models/BillIn');
 const Client = require("../models/client");
+var dataBillIn = [];
+var dataBillOut = [];
 var convert =  function(item){
+  var data = {};
   var day = item.createdAt.getDate();
   var month = item.createdAt.getMonth() + 1;
   var year = item.createdAt.getFullYear();
   var arr2 = new Array();
-  var arr = new Array();
-  arr.push(item.productId.name);
-  arr.push(item.productId.type);
-  arr.push(item.createByUser.username);
-  arr.push(item.numberOfProduct);
+  data.productName = item.productId.name;
+  data.type = item.productId.type;
+  data.username = item.createByUser.username;
+  data.numberOfProduct = item.numberOfProduct;
   if(item.clientId){
-    arr.push(item.clientId.name);
+    data.name = item.clientId.name;
+    data.phone = item.clientId.phone;
   }
   if(item.producerId){
-    arr.push(item.producerId.name);
+    data.name = item.producerId.name;
+    data.phone = item.producerId.phone;
   }
-  arr.push(item.unitPrice);
-  arr.push(item.totalPrice);
-  arr.push(day + "/" + month + "/" + year);
-  arr2.push(arr);
+
+  data.unitPrice = item.unitPrice;
+  data.totalPrice = item.totalPrice;
+  data.date = year + "/" + month + "/" + day;
+  arr2.push(data);
   return arr2;
 }
 
 var getAllBill = async function(typeBill,req,res){
   try{
     const data = await Bill.find({},['productId','numberOfProduct','unitPrice','totalPrice','createdAt'])
-    .populate('productId',['name','type']).populate('createByUser','username').populate('clientId','name');
+    .populate('productId',['name','type']).populate('createByUser','username').populate('clientId',['name','phone']);
     async.concat(data,function(item,callback){
       var newItem = convert(item);
       callback(null,newItem);
     },(err,doc)=>{
       if(err) res.send("loi");
-      else res.send(doc);
+      else{
+        dataBillOut = doc;
+        res.send(doc);
+      }
     })
   }catch(err){
     res.send(err);
@@ -45,13 +53,19 @@ var getAllBill = async function(typeBill,req,res){
 var getAllBillIn = async function(typeBill,req,res){
   try{
     const data = await BillIn.find({},['productId','numberOfProduct','unitPrice','totalPrice','createdAt'])
-    .populate('productId',['name','type']).populate('createByUser','username').populate('producerId','name');
+    .populate('productId',['name','type']).populate('createByUser','username').populate('producerId',['name','phone']);
     async.concat(data,function(item,callback){
       var newItem = convert(item);
       callback(null,newItem);
     },(err,doc)=>{
-      if(err) res.send("loi");
-      else res.send(doc);
+      if(err){
+        res.send("loi");
+      }
+      else{
+        dataBillIn = doc;
+        console.log(doc);
+        res.send(doc);
+      }
     })
   }catch(err){
     res.send(err);
@@ -164,10 +178,19 @@ var getDataTenDays = async function(req,res){
   });
 }
 
+var getdataBillExcelIn = function(){
+  return dataBillIn;
+}
+var getDataBillExcelOut = function(){
+  return dataBillOut;
+}
+
 module.exports = {
   getAllBill,
   getDataTenDays,
   billCountProduct,
   createBill,
-  getAllBillIn
+  getAllBillIn,
+  getdataBillExcelIn,
+  getDataBillExcelOut
 }

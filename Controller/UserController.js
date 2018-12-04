@@ -20,12 +20,12 @@ async function findUserByName(data){
   }
 }
 
-async function allUser(req,res){
+async function allUser(){
   try{
     var result = await UserModel.find({},["username","email","phone","gender","type"]);
-    res.send(result);
+    return result;
   }catch(err){
-    res.send(err);
+    return(err);
   }
 }
 

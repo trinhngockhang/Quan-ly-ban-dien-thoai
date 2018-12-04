@@ -3,14 +3,15 @@ $( document ).ready(function() {
       $('#datatable-bill').DataTable( {
         data: bill,
         columns: [
-            { title: "Tên sản phẩm" },
-            { title: "Hãng"},
-            { title: "Người nhập" },
-            { title: "Số lượng" },
-            { title: "Nhà cung cấp" },
-            { title: "Đơn giá" },
-            { title: "Tổng tiền" },
-            { title: "Thời gian"}
+            { title: "Tên sản phẩm",data:"productName" },
+            { title: "Hãng",data : "type"},
+            { title: "Người nhập",data:"username" },
+            { title: "Số lượng",data:"numberOfProduct" },
+            { title: "Nhà cung cấp",data:"name"},
+            { title: "SĐT",data :"phone"},
+            { title: "Đơn giá",data : "unitPrice" },
+            { title: "Tổng tiền" ,data:"totalPrice"},
+            { title: "Thời gian",data:"date"}
         ]
     } );
     })

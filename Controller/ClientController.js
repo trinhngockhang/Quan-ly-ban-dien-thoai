@@ -10,12 +10,15 @@ var createClient = async function(req,res){
   }
 }
 
-var getAllClient = async function(req,res){
+var getAllClient = async function(){
   var data = await client.find();
-  res.send(data);
+  return data;
 }
+
+
 
 module.exports = {
   createClient,
-  getAllClient
+  getAllClient,
+
 }

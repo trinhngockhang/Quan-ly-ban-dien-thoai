@@ -60,4 +60,8 @@ module.exports = app => {
   app.get("/producer-table",requireLogin,(req,res) => {
     res.render('producer-table');
   })
+  app.get("/form-producer",requireBoss,(req,res) => {
+    res.render('form-producer');
+  })
+
 };
