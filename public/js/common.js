@@ -3,5 +3,6 @@ $( document ).ready(function() {
     $( ".name-user" ).html( data.name );
     $( ".Welcome-name" ).html( data.name );
     $("#avatar-user").attr("src",data.avatarLink);
+    $(".user-profile img").attr("src",data.avatarLink);
   });
 })

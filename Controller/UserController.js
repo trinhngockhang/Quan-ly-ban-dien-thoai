@@ -43,10 +43,12 @@ async function updateUser(req,res){
     res.send('err');
   }else{
   var objForUpdate = {};
+  var linkAva = req.file.path;
   if(req.body.username) objForUpdate.username = req.body.username;
   if(req.body.email) objForUpdate.email = req.body.email;
   if(req.body.name) objForUpdate.name = req.body.name;
   if(req.body.phone) objForUpdate.phone = req.body.phone;
+  if(req.file) objForUpdate.avatarLink = linkAva.substring(7,linkAva.length);
   console.log(objForUpdate);
   try{
     await UserModel.findOneAndUpdate({_id:req.user._id},objForUpdate);

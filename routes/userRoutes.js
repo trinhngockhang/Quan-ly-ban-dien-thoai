@@ -7,9 +7,29 @@ const clientController = require('../Controller/ClientController');
 const User = require('../models/User');
 const excel = require('node-excel-export');
 const styles = require('../config/styleExcel');
+var multer  = require('multer');
 var allClients = [];
 var allUsers = [];
 var allProducer = [];
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'public/images/')
+    },
+    filename: function (req, file, cb) {
+        console.log(file)
+        var fileObj = {
+            "image/png": ".png",
+            "image/jpeg": ".jpeg",
+            "image/jpg": ".jpg"
+        };
+        if (fileObj[file.mimetype] == undefined) {
+            cb(new Error("file format not valid"));
+        } else {
+            cb(null, file.fieldname + '-' + Date.now() + fileObj[file.mimetype])
+        }
+    }
+});
+var upload = multer({storage: storage});
 module.exports = app => {
   app.post("/api/createUser",(req,res) => {
       userController.createUser(req,res);
@@ -18,13 +38,17 @@ module.exports = app => {
   app.get('/api/current_user', (req, res) => {
       res.send(req.user);
   });
+  app.post('/testimage',upload.single('avatar'),function(req,res){
+    console.log(req.path);
+    res.send("a");
+  })
 
   app.get("/api/countUser",async (req,res) => {
       var count = await User.countDocuments();
       res.send("" + count);
   })
 
-  app.post('/api/updateUser',async (req, res) => {
+  app.post('/api/updateUser', upload.single('avatar'),async function (req, res){
       await userController.updateUser(req,res);
   });
 

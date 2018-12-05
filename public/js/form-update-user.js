@@ -7,10 +7,17 @@ $( document ).ready(function() {
         $( "#phone").val(data.phone);
       });
       $( "#form-update-user" ).submit(function( event ) {
+        var form = $('#form-update-user')[0];
+
+        var data = new FormData(form);
         $.ajax({ // create an AJAX call...
-          data: $(this).serialize(), // get the form data
+          data: data, // get the form data
           type: $(this).attr('method'), // GET or POST
-          url: $(this).attr('action'), // the file to call
+          url: $(this).attr('action'),
+          enctype: 'multipart/form-data',
+          processData: false,  // Important!
+          contentType: false,
+          cache: false, // the file to call
           success: function(response) { // on success..
               if(response === "Success"){
                 console.log(response);
