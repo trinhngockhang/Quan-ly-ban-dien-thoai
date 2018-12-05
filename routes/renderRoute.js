@@ -63,5 +63,8 @@ module.exports = app => {
   app.get("/form-producer",requireBoss,(req,res) => {
     res.render('form-producer');
   })
+  app.get("/update-producer",requireBoss,(req,res) => {
+    res.render('update-producer');
+  })
 
 };

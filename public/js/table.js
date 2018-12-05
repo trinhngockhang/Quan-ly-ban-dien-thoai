@@ -3,6 +3,7 @@ $( document ).ready(function() {
       $('#datatable-bill').DataTable( {
         data: bill,
         columns: [
+            { title: "Mã GD",data : "_id"},
             { title: "Tên sản phẩm",data:"productName" },
             { title: "Hãng",data : "type"},
             { title: "Người nhập",data:"username" },

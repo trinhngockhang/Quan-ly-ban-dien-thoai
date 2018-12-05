@@ -64,9 +64,12 @@ var topType = async function(req,res){
 
 var updateProduct = async function(req,res){
   try{
-    var priceForUpdate ;
-    if(req.body.price) priceForUpdate = req.body.price;
-    await Product.findOneAndUpdate({_id:req.body.productId},{price:priceForUpdate});
+    var updateData = {} ;
+    if(req.body.price) updateData.price = req.body.price;
+    if(req.body.name) updateData.name = req.body.name;
+    if(req.body.description) updateData.description = req.body.description;
+    var doc = await Product.findOneAndUpdate({_id:req.body.productId},{price:updateData.price,name:updateData.name,description:updateData.description});
+    console.log(doc);
     res.send("Success");
   }catch(err){
     res.send("Err");

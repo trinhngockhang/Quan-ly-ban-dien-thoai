@@ -74,6 +74,7 @@
                       <li><a href="/form-user">Tạo admin(cho quản lý)</a></li>
                       <li><a href="/update-user">Sửa thông tin</a></li>
                       <li><a href="/update-product">Cập nhật sản phẩm</a></li>
+<li><a href="/update-producer">Cập nhật NCC</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-table"></i> Bảng <span class="fa fa-chevron-down"></span></a>
@@ -133,7 +134,7 @@
                 <h3>Thành viên</h3>
               </div>
 
-            
+
             </div>
             <div class="clearfix"></div>
             <div class="row">
@@ -153,7 +154,13 @@
                   <div class="x_content">
                     <br />
                     <form id="form-update-user" data-parsley-validate class="form-horizontal form-label-left" method = "POST" action ="/api/updateUser">
-
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Họ tên<span class="required"></span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="name" class="form-control col-md-7 col-xs-12" name = "name" />
+                        </div>
+                      </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Tên đăng nhập<span class="required"></span>
                         </label>
@@ -162,21 +169,15 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Họ tên</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input  name = "name" class="form-control col-md-7 col-xs-12" type="text" >
-                        </div>
-                      </div>
-                      <div class="form-group">
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input  name = "email" class="form-control col-md-7 col-xs-12" type="text" >
+                          <input  name = "email" id ="email" class="form-control col-md-7 col-xs-12" type="text" >
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Điện thoại</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input name = "phone" class="form-control col-md-7 col-xs-12" type="Number" >
+                          <input name = "phone" id="phone" class="form-control col-md-7 col-xs-12" type="Number" >
                         </div>
                       </div>
 

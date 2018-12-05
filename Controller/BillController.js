@@ -11,6 +11,7 @@ var convert =  function(item){
   var month = item.createdAt.getMonth() + 1;
   var year = item.createdAt.getFullYear();
   var arr2 = new Array();
+  data._id = item._id;
   data.productName = item.productId.name;
   data.type = item.productId.type;
   data.username = item.createByUser.username;
@@ -33,7 +34,7 @@ var convert =  function(item){
 
 var getAllBill = async function(typeBill,req,res){
   try{
-    const data = await Bill.find({},['productId','numberOfProduct','unitPrice','totalPrice','createdAt'])
+    const data = await Bill.find({},['_id','productId','numberOfProduct','unitPrice','totalPrice','createdAt'])
     .populate('productId',['name','type']).populate('createByUser','username').populate('clientId',['name','phone']);
     async.concat(data,function(item,callback){
       var newItem = convert(item);
@@ -52,7 +53,7 @@ var getAllBill = async function(typeBill,req,res){
 
 var getAllBillIn = async function(typeBill,req,res){
   try{
-    const data = await BillIn.find({},['productId','numberOfProduct','unitPrice','totalPrice','createdAt'])
+    const data = await BillIn.find({},['_id','productId','numberOfProduct','unitPrice','totalPrice','createdAt'])
     .populate('productId',['name','type']).populate('createByUser','username').populate('producerId',['name','phone']);
     async.concat(data,function(item,callback){
       var newItem = convert(item);
@@ -178,12 +179,15 @@ var getDataTenDays = async function(req,res){
   });
 }
 
+
+
 var getdataBillExcelIn = function(){
   return dataBillIn;
 }
 var getDataBillExcelOut = function(){
   return dataBillOut;
 }
+
 
 module.exports = {
   getAllBill,

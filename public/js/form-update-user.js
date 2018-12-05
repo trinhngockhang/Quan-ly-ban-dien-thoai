@@ -1,4 +1,11 @@
 $( document ).ready(function() {
+      $.get( "/api/current_user", function( data ) {
+        console.log(data);
+        $( "#name" ).val(data.name);
+        $( "#user-name" ).val( data.username );
+        $( "#email").val(data.email);
+        $( "#phone").val(data.phone);
+      });
       $( "#form-update-user" ).submit(function( event ) {
         $.ajax({ // create an AJAX call...
           data: $(this).serialize(), // get the form data

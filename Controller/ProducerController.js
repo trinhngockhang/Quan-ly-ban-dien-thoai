@@ -15,7 +15,20 @@ var getAllProducer= async function(){
     return data;
 }
 
+var updateProducer = async function(req,res){
+  try{
+    var data = req.body;
+    var doc = await Producer.findOneAndUpdate({_id:data.producerId},data);
+    console.log(doc);
+    res.send("Success");
+  }catch(err){
+    res.send("err");
+  }
+
+}
+
 module.exports = {
   createProducer,
-  getAllProducer
+  getAllProducer,
+  updateProducer
 }

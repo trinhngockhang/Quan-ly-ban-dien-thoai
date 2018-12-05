@@ -49,6 +49,10 @@ module.exports = app => {
     res.send(result);
   })
 
+  app.post("/api/updateProducer",async (req,res) => {
+    await producerController.updateProducer(req,res);
+  })
+
   app.post("/api/createClient",async (req,res) =>{
     var result = await clientController.createClient(req,res);
     res.send("done");

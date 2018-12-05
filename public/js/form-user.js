@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-
+      
       $( "#form-user" ).submit(function( event ) {
         $.ajax({ // create an AJAX call...
           data: $(this).serialize(), // get the form data

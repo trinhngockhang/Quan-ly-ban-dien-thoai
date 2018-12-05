@@ -29,7 +29,6 @@
     <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="css/custom.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
   </head>
 
@@ -74,6 +73,7 @@
                       <li><a href="/form-user">Tạo admin(cho quản lý)</a></li>
                       <li><a href="/update-user">Sửa thông tin</a></li>
                       <li><a href="/update-product">Cập nhật sản phẩm</a></li>
+<li><a href="/update-producer">Cập nhật NCC</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-table"></i> Bảng <span class="fa fa-chevron-down"></span></a>
@@ -114,7 +114,7 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  
+
                     <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
@@ -167,7 +167,7 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Loại sản phẩm</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="select2_group form-control" name="productId">
+                          <select class="select2_group form-control" name="productId" id="selectPhone">
                             <optgroup label="Iphone" class="opt-iphone">
                             </optgroup>
                             <optgroup label="Xiaomi" class="opt-xiaomi">
@@ -181,16 +181,27 @@
                           </select>
                         </div>
                       </div>
-
+                      <div class="form-group">
+                        <label  class="control-label col-md-3 col-sm-3 col-xs-12">Tên sản phẩm</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="name" class="form-control col-md-7 col-xs-12" type="text" name="name">
+                        </div>
+                      </div>
                       <div class="form-group">
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Giá sản phẩm</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="price" class="form-control col-md-7 col-xs-12" type="text" name="price">
+                          <input id="price" class="form-control col-md-7 col-xs-12" type="number" name="price">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Miêu tả</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="description" class="form-control col-md-7 col-xs-12" type="text" name="description">
                         </div>
                       </div>
 
-
                       <div class="ln_solid"></div>
+                      <h5 class = "mess" >✓ Nhập thành công</h5>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                           <button class="btn btn-primary" type="button">Cancel</button>
@@ -258,5 +269,6 @@
     <script src="js/custom.min.js"></script>
     <script src="js/common.js"></script>
     <script src="js/form.js"></script>
+    <script src="js/update-product.js"></script>
   </body>
 </html>
