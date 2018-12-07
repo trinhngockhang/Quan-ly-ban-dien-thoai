@@ -179,7 +179,41 @@ var getDataTenDays = async function(req,res){
   });
 }
 
+var deleteBillOut = async function(req,res){
+  try{
+    var id = req.body.id;
+    var data = await Bill.findOne({_id:id},['numberOfProduct','productId','clientId']);
+    var result = await Product.findOneAndUpdate({_id:data.productId},{$inc:{available:data.numberOfProduct,sold:-data.numberOfProduct}});
+    var deleteResult = await Bill.remove({_id:id});
+    var client = await Bill.find({clientId:data.clientId});
+    console.log("client " + client + " ne ");
+    if(!(client.length > 0)){
+      await Client.remove({_id:data.clientId});
+    }
+    res.send("Success");
+  }catch(err){
+    console.log(err);
+    res.send("err");
+  }
+}
 
+var deleteBillIn = async function(req,res){
+  try{
+    var id = req.body.id;
+    var data = await BillIn.findOne({_id:id},['numberOfProduct','productId']);
+    var result = await Product.findOne({_id:data.productId},['available','sold']);
+    console.log(result);
+    if(data.numberOfProduct > result.available){
+      res.send("can not");
+    }else{
+      var updateProduct = await Product.findOneAndUpdate({_id:data.productId},{$inc:{available:-data.numberOfProduct}});
+      var deleteResult = await BillIn.remove({_id:id});
+      res.send("Success");
+    }
+  }catch(err){
+    res.send(err);
+  }
+}
 
 var getdataBillExcelIn = function(){
   return dataBillIn;
@@ -196,5 +230,7 @@ module.exports = {
   createBill,
   getAllBillIn,
   getdataBillExcelIn,
-  getDataBillExcelOut
+  getDataBillExcelOut,
+  deleteBillOut,
+  deleteBillIn
 }

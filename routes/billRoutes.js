@@ -138,4 +138,10 @@ module.exports = app => {
     return res.send(report);
   })
 
+  app.post("/api/deleteBillOut",async (req,res) => {
+    await billController.deleteBillOut(req,res);
+  })
+  app.post("/api/deleteBillIn",async (req,res) => {
+    await billController.deleteBillIn(req,res);
+  })
 }

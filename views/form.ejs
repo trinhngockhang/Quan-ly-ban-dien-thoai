@@ -29,6 +29,7 @@
     <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
+    <link href="css/custom.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
   </head>
 
@@ -59,7 +60,7 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3>General</h3>
+                <h3>Menu</h3>
                 <ul class="nav side-menu">
                   <li><a href="/"><i class="fa fa-home"></i>Trang chủ</a>
                   </li>
@@ -72,7 +73,6 @@
                       <li><a href="/form-user">Tạo admin(cho quản lý)</a></li>
                       <li><a href="/update-user">Sửa thông tin</a></li>
                       <li><a href="/update-product">Cập nhật sản phẩm</a></li>
-<li><a href="/update-producer">Cập nhật NCC</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-table"></i> Bảng <span class="fa fa-chevron-down"></span></a>
@@ -83,6 +83,12 @@
                       <li><a href="/user-table">Nhân viên</a></li>
                       <li><a href="/client-table">Khách hàng</a></li>
                       <li><a href="/producer-table">Nhà cung cấp</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-trash"></i> Xoá <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="/delete-bill-in">Xoá đơn nhập</a></li>
+                      <li><a href="/delete-bill-out">Xoá đơn xuất</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -130,7 +136,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Form Elements</h3>
+                <h3>Sản phẩm</h3>
               </div>
 
 
@@ -165,7 +171,7 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Hãng điện thoại<span class="required">*</span></label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Hãng điện thoại</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select class="form-control" name = "type">
                             <option value = "Iphone">Iphone</option>
@@ -177,7 +183,7 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Giá bán <span class="required">*</span></label>
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Giá bán</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input id="price" name = "price" class="form-control col-md-7 col-xs-12" type="number" required="">
                         </div>

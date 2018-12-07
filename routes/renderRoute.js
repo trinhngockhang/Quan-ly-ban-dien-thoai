@@ -67,4 +67,11 @@ module.exports = app => {
     res.render('update-producer');
   })
 
+  app.get("/delete-bill-in",requireBoss,(req,res) => {
+    res.render('delete-bill');
+  })
+
+  app.get("/delete-bill-out",requireBoss,(req,res) => {
+    res.render('delete-bill-out');
+  })
 };
